@@ -38,7 +38,7 @@ const postsBySubreddits = (state = {}, action) => {
   switch (action.type) {
     case INVALIDATE_SUBREDDIT: 
     case RECEIVE_POSTS:
-    case: REQUECT_POSTS: return {
+    case REQUECT_POSTS: return {
       ...state,
       [action.subreddit]: posts(state[action.subreddit], action)
     }

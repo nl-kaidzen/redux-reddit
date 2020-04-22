@@ -1,11 +1,19 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
+import { createStore, applyMiddleware } from 'redux';
+import thunkMiddleware from 'redux-thunk';
+import { createLogger } from 'redux-logger';
+import { selectSubreddit, fetchPosts, fetchPostsIfNeeded } from './redux/actions';
+import rootReducer from './redux/reducer';
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
+const loggerMiddleware = createLogger();
+
+const store = createStore(
+  rootReducer, 
+  applyMiddleware(
+    thunkMiddleware,
+    loggerMiddleware,  
+  )
 );
+
+store.dispatch(selectSubreddit('reactjs'));
+store.dispatch(fetchPostsIfNeeded('reactjs'))
+  .then(() => console.log(store.getState()));
