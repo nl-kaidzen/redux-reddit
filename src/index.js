@@ -1,7 +1,7 @@
 import { createStore, applyMiddleware } from 'redux';
 import thunkMiddleware from 'redux-thunk';
 import { createLogger } from 'redux-logger';
-import { selectSubreddit, fetchPosts, fetchPostsIfNeeded } from './redux/actions';
+import { selectSubreddit, fetchPostsIfNeeded } from './redux/actions';
 import rootReducer from './redux/reducer';
 
 const loggerMiddleware = createLogger();
